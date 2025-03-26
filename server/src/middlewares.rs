@@ -1,1 +1,2 @@
-pub mod blockchain_middleware;
+pub mod block;
+pub mod blockchain;
