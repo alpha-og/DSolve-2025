@@ -5,5 +5,5 @@ edition = "2024"
 
 [dependencies]
 axum = {version="0.8.1", features=["macros"]}
-sqlx = "0.8.3"
-tokio = {version="1.44.1", features=["postgres", "runtime-tokio-native-tls"]}
+sqlx = {version="0.8.3", features=["postgres", "runtime-tokio-native-tls"]}
+tokio = {version="1.44.1"}
