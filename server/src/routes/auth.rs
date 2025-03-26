@@ -26,6 +26,20 @@ async fn signup(
     State(state): State<AppState>,
     Json(payload): Json<SignupPayload>,
 ) -> Result<Json<SignupResponse>, (StatusCode, Json<ErrorMessage>)> {
+    let user = match User::get_user_by_email(state.pg_pool.clone(), &payload.email).await {
+        Ok(user) => Some(user),
+        Err(_) => None,
+    };
+
+    if user.is_some() {
+        return Err((
+            StatusCode::BAD_REQUEST,
+            Json(ErrorMessage {
+                message: "Email already exists".to_string(),
+            }),
+        ));
+    }
+
     let id = match User::create_user_with_email_and_password(
         state.pg_pool,
         &payload.email,
