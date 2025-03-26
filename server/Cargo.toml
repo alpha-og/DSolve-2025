@@ -5,8 +5,11 @@ edition = "2024"
 
 [dependencies]
 axum = {version="0.8.1", features=["macros"]}
+base64 = "0.22.1"
 chrono = "0.4.40"
+jwt-simple = "0.12.12"
+password-auth = "1.0.0"
 serde = "1.0.219"
 sha2 = "0.10.8"
-sqlx = {version="0.8.3", features=["postgres", "runtime-tokio-native-tls"]}
+sqlx = {version="0.8.3", features=["postgres", "time", "runtime-tokio-native-tls"]}
 tokio = {version="1.0", features=["full"]}
