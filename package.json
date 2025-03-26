@@ -1,0 +1,15 @@
+{
+  "name": "DSolve-2025",
+  "version": "0.1.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "dev": "pnpm run /dev::*/",
+    "dev:web": "pnpm --filter web dev",
+    "dev:server": "cargo watch -C server/src -x run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.5.2"
+}

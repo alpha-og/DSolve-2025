@@ -1,0 +1,8 @@
+packages:
+  - packages/*
+  - web
+ignoredBuiltDependencies:
+  - '@swc/core'
+  - esbuild
+onlyBuiltDependencies:
+  - '@swc/core'
