@@ -1,12 +1,12 @@
 #[derive(Clone)]
-pub struct State {
+pub struct AppState {
     pub pg_pool: sqlx::postgres::PgPool,
     pub jwt_key_provider: crate::jwt::JWTKeyProvider,
 }
 
-impl State {
+impl AppState {
     pub fn new(pool: sqlx::postgres::PgPool, jwt_secret: &str) -> Self {
-        State {
+        Self {
             pg_pool: pool,
             jwt_key_provider: crate::jwt::JWTKeyProvider::new(jwt_secret),
         }
