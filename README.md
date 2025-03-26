@@ -1,16 +1,16 @@
 # 🚀 DSolve-2025 Hackathon
 
 ## 👥 Team Information
-**Team Name:** [Your Creative Team Name]  
+**Team Name:** Arkway
 
 **Team Members:**
-- Member 1 Name
-- [Member 1's Github ](https://github.com/username) - Role/Contribution
-- Member 2 Name
-- [Member 2's Github](https://github.com/username) - Role/Contribution
+- Athul Anoop
+- [Member 1's Github ](https://github.com/alpha-og) - Role/Contribution
+- Sharon P Shajan
+- [Member 2's Github](https://github.com/sharon504) - Role/Contribution
 
 ## 💡 Project Idea
-[A clear, concise 2-3 sentence description of your project's purpose and value proposition]
+We propose a blockchain-based order verification system that ensures tracking numbers are cryptographically linked to actual orders which can also be viewed by the delivery partner, preventing fraudulent misuse. Each order is assigned a unique blockchain chain, with the first block storing order details. The seller must choose a delivery partner through our integration with the marketplace and provide necessary details such as pick up location. This approach enforces tamper-proof tracking, ensuring authenticity while reducing fraudulent disputes. To optimize scalability, hashed proofs are stored on-chain, while full metadata is kept in off-chain storage. The system integrates proof-of-pickup mechanisms (QR codes, barcodes, or NFC scans) and optional customer verification steps to further strengthen trust. By leveraging Layer 2 rollups or permissioned blockchains, the solution can be scaled to be cost-effective and efficient, making it viable for widespread adoption across marketplaces and logistics networks.
 
 ## ✨ Key Features
 - 🔍 Feature 1: [Brief description]
@@ -47,11 +47,6 @@
 
 ## 🤝 How to Contribute
 We welcome contributions! Here are some ways you can help:
-
-### Good First Issues
-- [ ] Implement feature X
-- [ ] Improve documentation
-- [ ] Fix bug #123
 
 ### Contribution Workflow
 1. Fork the repository
