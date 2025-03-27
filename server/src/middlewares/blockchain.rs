@@ -26,13 +26,13 @@ impl Blockchain {
         self.chain.push(new_block);
     }
 
-    pub fn is_valid(&self) -> bool {
+    pub fn is_valid(&self) -> usize {
         for i in 1..self.chain.len() {
             let current_block = &self.chain[i];
             let previous_block = &self.chain[i - 1];
 
             if current_block.prev_hash != previous_block.hash {
-                return false;
+                return i;
             }
 
             if current_block.hash
@@ -44,10 +44,10 @@ impl Blockchain {
                     current_block.nonce,
                 )
             {
-                return false;
+                return i;
             }
         }
-        true
+        0
     }
 }
 
@@ -55,5 +55,5 @@ impl Blockchain {
 fn test_blockchain_new() {
     let mut blockchain = Blockchain::new(1);
     blockchain.add_block(String::from("Sharon"));
-    assert!(blockchain.is_valid());
+    assert_eq!(blockchain.is_valid(), 0);
 }
