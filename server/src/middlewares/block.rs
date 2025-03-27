@@ -1,7 +1,7 @@
 use chrono::Utc;
 use sha2::{Digest, Sha256};
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Block {
     pub index: u32,
     pub timestamp: i64,

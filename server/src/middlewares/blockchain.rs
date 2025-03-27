@@ -1,6 +1,6 @@
 use crate::middlewares::block::Block;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Blockchain {
     pub chain: Vec<Block>,
     pub difficulty: u32,
