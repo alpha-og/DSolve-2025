@@ -16,10 +16,10 @@ impl Block {
     pub fn new(index: u32, prev_hash: String, data: String, difficulty: u32) -> Block {
         let timestamp = Utc::now().timestamp();
         let mut nonce: u32 = 0;
-        let mut hash = Self::calcuate_hash(index, &prev_hash, timestamp, &data, nonce);
+        let mut hash = Self::calculate_hash(index, &prev_hash, timestamp, &data, nonce);
         while !hash.starts_with(&"0".repeat(difficulty as usize)) {
             nonce += 1;
-            hash = Self::calcuate_hash(index, &prev_hash, timestamp, &data, nonce);
+            hash = Self::calculate_hash(index, &prev_hash, timestamp, &data, nonce);
         }
         Block {
             index,
@@ -32,7 +32,7 @@ impl Block {
         }
     }
 
-    pub fn calcuate_hash(
+    pub fn calculate_hash(
         index: u32,
         pre_hash: &str,
         timestamp: i64,
