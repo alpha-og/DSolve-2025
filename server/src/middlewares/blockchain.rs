@@ -1,4 +1,6 @@
-use crate::middlewares::block::Block;
+use crate::middlewares::{block::Block, order_data::OrderData};
+use rand::thread_rng;
+use rsa::{RsaPrivateKey, RsaPublicKey};
 
 #[derive(Debug, Clone)]
 pub struct Blockchain {
@@ -8,14 +10,27 @@ pub struct Blockchain {
 
 impl Blockchain {
     pub fn new(difficulty: u32) -> Self {
-        let genesis_block = Block::new(0, "".to_string(), "Genesis Block".to_string(), difficulty);
+        let mut rng = thread_rng();
+        let private_key = RsaPrivateKey::new(&mut rng, 2048).expect("failed to generate a key");
+        let public_key = RsaPublicKey::from(&private_key);
+        let genesis_data = OrderData::new(
+            0,          // order_id: u32
+            0,          // quantity: i32
+            0,          // price: u32
+            0,          // seller_id: u32
+            None,       // pickup_point: Option<String>
+            Vec::new(), // delivery_point: Vec<u8>
+            None,       // delivery_partner_id: Option<u32>
+            public_key, // public_key: RsaPublicKey
+        );
+        let genesis_block = Block::new(0, "".to_string(), genesis_data, difficulty);
         Blockchain {
             chain: vec![genesis_block],
             difficulty,
         }
     }
 
-    pub fn add_block(&mut self, data: String) {
+    pub fn add_block(&mut self, data: OrderData) {
         let previous_block = self.chain.last().unwrap();
         let new_block = Block::new(
             previous_block.index + 1,
@@ -53,7 +68,21 @@ impl Blockchain {
 
 #[test]
 fn test_blockchain_new() {
+    let mut rng = thread_rng();
+    let private_key = RsaPrivateKey::new(&mut rng, 2048).expect("failed to generate a key");
+    let public_key = RsaPublicKey::from(&private_key);
+
     let mut blockchain = Blockchain::new(1);
-    blockchain.add_block(String::from("Sharon"));
+    let test_data = OrderData::new(
+        1,                      // order_id: u32
+        2,                      // quantity: i32
+        100,                    // price: u32
+        123,                    // seller_id: u32
+        Some("Store A".into()), // pickup_point: Option<String>
+        Vec::new(),             // delivery_point: Vec<u8>
+        None,                   // delivery_partner_id: Option<u32>
+        public_key,             // public_key: RsaPublicKey
+    );
+    blockchain.add_block(test_data);
     assert_eq!(blockchain.is_valid(), 0);
 }
